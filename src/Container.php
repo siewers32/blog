@@ -1,7 +1,7 @@
 <?php
 
 class Container {
-    private object $objects;
+    private array $objects;
 
     public function __construct() {
         $this->objects = [];
