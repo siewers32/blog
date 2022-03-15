@@ -2,21 +2,25 @@
     scroll-behavior: smooth;
     --heading: #541132;
     --text: #171a4c;
-    --link: #670d59;
+    --link: #7a1154;
     --link-light: #b730a5;
     --bg: #efefef;
+    --window: #545454;
+    --form: #d7d7d7;
+    --form-border: #b1b1b1;;
 }
 
 body {
+    background-color: var(--window);
     font-family: 'Public Sans', sans-serif;
     color: var(--text);
 }
 
-h1 {
+h1, h2, h3 {
     color: var(--heading)
 }
 
-table {
+table, form {
     border: 1px var(--text) solid;
     border-radius: 8px;
     background-color: white;
@@ -32,18 +36,23 @@ td {
 
 
 
-main, header {
+main, header, footer {
     background-color: var(--bg);
-    width:800px;
+    width:90%;
+    min-width:400px;
     margin:auto;
     padding:16px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
 }
 
 header {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-color: var(--heading);
 }
 
-nav a {
+nav a, span {
     color: var(--bg);
     text-decoration: none;
     margin-right:16px;
@@ -53,4 +62,51 @@ nav a:hover {
     color: var(--link-light);
 }
 
+
+form {
+    background-color: var(--form);
+    border-radius: 8px;
+    padding:16px;
+    width:80%;
+    margin:auto;
+}
+
+label {
+    display:block;
+    margin:4px;
+}
+
+input {
+    box-sizing: border-box;
+    width:100%;
+    padding:8px;
+    border-radius: 6px;
+    border: 1px solid var(--form-border);
+    margin-bottom:8px;
+}
+
+input[type=submit] {
+    background-color: var(--heading);
+    color:white;
+    width:25%;
+    display:block;
+    margin-top:10px;
+}
+
+input[type=submit]:focus {
+    background-color: var(--link-light);
+    border:2px white solid;
+}
+
+input[type=submit]:hover {
+    background-color: var(--link);
+}
+
+footer {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    min-height:100px;
+    background-color: var(--heading);
+    color:white;
+}
 

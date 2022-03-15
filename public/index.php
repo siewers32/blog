@@ -2,6 +2,7 @@
 session_start();
 include("../src/Models/Message.php");
 include("../src/Controllers/BaseController.php");
+include("../src/Controllers/HomeController.php");
 include("../src/Controllers/MessageController.php");
 include("../src/Models/User.php");
 include("../src/Controllers/UserController.php");
@@ -11,17 +12,19 @@ include("../src/View.php");
 
 $c = new Container();
 
-$conn = new PDO("mysql:host=localhost;port=3307;dbname=blog", "root", "root");
-$c->add('db',$conn);
+$pdo = new PDO("mysql:host=localhost;port=3307;dbname=blog", "root", "root");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+$c->add('db',$pdo);
 
 //layout
 $view = new View("../src/Views/layout/layout.tpl");
-//navbar
-$view->add(':login', isset($_SESSION['user']) ? '<span>'.ucfirst($_SESSION['user']).'</span>':"<a href='index.php?controller=auth&action=login'>Login</a>");
-$view->add(':logout', isset($_SESSION['user']) ? "<a href='index.php?controller=auth&action=logout'>Uitloggen</a>": "");
-$view->add(':register', !isset($_SESSION['user']) ? "<a href='index.php?controller=auth&action=register'>Register</a>": "");
-
 $c->add('view', $view);
+
+//authentication
+//$auth = include("../src/Auth.php");
+//$c->add('auth', $auth());
 
 $controllers = [
     'HomeController',

@@ -12,9 +12,10 @@
 <header>
     <nav>
         <a href="index.php?controller=home&action=index">Home</a>
+        :register
         :login
         :logout
-        :register
+        :messages
     </nav>
 </header>
 
@@ -23,5 +24,8 @@
     <p>Hier wat standaard tekst.</p>
     :main
 </main>
+<footer>
+    :footer
+</footer>
 </body>
 </html>

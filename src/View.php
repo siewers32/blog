@@ -4,7 +4,7 @@
 class View
 {
     private string $layout;
-    private array $data;
+    public array $data;
 
     public function __construct(string $layout) {
         $this->layout = $layout;
@@ -14,6 +14,14 @@ class View
         $this->data[$placeholder] = $html;
     }
 
+    public function render_nav() {
+        $this->add(':logout', isset($_SESSION['user']) ? "<a href='index.php?controller=auth&action=logout'>Uitloggen</a>": "");
+        $this->add(':register', !isset($_SESSION['user']) ? "<a href='index.php?controller=auth&action=register'>Register</a>": "");
+        $this->add(':login', isset($_SESSION['user']) ? '<span>'.ucfirst($_SESSION['user']['email']).'</span>':"<a href='index.php?controller=auth&action=login'>Login</a>");
+        $this->add(':messages', !isset($_SESSION['user']) ? '':"<a href='index.php?controller=message&action=index'>Messages</a>");
+        $this->add(':newmessage', !isset($_SESSION['user']) ? '':"<a href='index.php?controller=message&action=newmessage'>New Message</a>");
+
+    }
 
     public function render_table($class, $data) {
         $html = "<table class='$class'>\n";
@@ -37,6 +45,7 @@ class View
     }
 
     public function render() {
+        $this->render_nav();
         $page = file_get_contents($this->layout);
         echo strtr($page, $this->data);
     }
