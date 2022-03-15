@@ -19,7 +19,7 @@ class View
         $this->add(':register', !isset($_SESSION['user']) ? "<a href='index.php?controller=auth&action=register'>Register</a>": "");
         $this->add(':login', isset($_SESSION['user']) ? '<span>'.ucfirst($_SESSION['user']['email']).'</span>':"<a href='index.php?controller=auth&action=login'>Login</a>");
         $this->add(':messages', !isset($_SESSION['user']) ? '':"<a href='index.php?controller=message&action=index'>Messages</a>");
-        $this->add(':newmessage', !isset($_SESSION['user']) ? '':"<a href='index.php?controller=message&action=newmessage'>New Message</a>");
+        $this->add(':newmessage', !isset($_SESSION['user']) ? 'bla':"<a href='index.php?controller=message&action=newmessage'>New Message</a>");
 
     }
 

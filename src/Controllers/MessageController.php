@@ -14,7 +14,7 @@ class MessageController extends BaseController
     }
 
     public function newmessage() {
-        if($this->auth()) {
+        if($this->auth->auth()) {
             echo "Authenticated";
         } else {
             echo "Not Authenticated";

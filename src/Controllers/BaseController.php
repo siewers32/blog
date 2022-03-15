@@ -4,7 +4,7 @@ abstract class BaseController {
     protected Container $c;
     protected View $view;
     protected PDO $db;
-    protected bool $auth;
+    protected Auth $auth;
 
     public function __construct(Container $c) {
         $this->c = $c;

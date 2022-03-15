@@ -9,6 +9,7 @@ include("../src/Controllers/UserController.php");
 include("../src/Controllers/AuthController.php");
 include("../src/Container.php");
 include("../src/View.php");
+include("../src/Auth.php");
 
 $c = new Container();
 
@@ -23,8 +24,7 @@ $view = new View("../src/Views/layout/layout.tpl");
 $c->add('view', $view);
 
 //authentication
-//$auth = include("../src/Auth.php");
-//$c->add('auth', $auth());
+$c->add('auth', new Auth());
 
 $controllers = [
     'HomeController',

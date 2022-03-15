@@ -16,6 +16,7 @@
         :login
         :logout
         :messages
+        :newmessage
     </nav>
 </header>
 
