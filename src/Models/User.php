@@ -12,7 +12,7 @@ class User {
     ];
 
     private string $table = 'user';
-    private string $pk = 'user_id';
+    public string $pk = 'user_id';
 
     public function create($db) {
         $fields = implode(', ', array_merge($this->fillable, $this->guarded));
@@ -41,7 +41,7 @@ class User {
     }
 
     public function fetchByEmail($db) {
-        $fields = implode(', ', array_merge($this->fillable, $this->guarded));
+        $fields = implode(', ', array_merge($this->fillable, $this->guarded, array($this->pk)));
         $sql = "select $fields from $this->table where email = :email";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':email', $_POST['email']);

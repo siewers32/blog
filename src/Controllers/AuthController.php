@@ -30,7 +30,7 @@ class AuthController extends BaseController
         $user = new User();
         $result = $user->fetchByEmail($this->db, $_POST['email']);
         if($result && password_verify($_POST['password'], $result['password'])) {
-            foreach($user->fillable as $udata) {
+            foreach(array_merge($user->fillable, array($user->pk)) as $udata) {
                 $_SESSION['user'][$udata] = $result[$udata];
             }
         } else {

@@ -10,15 +10,21 @@ class MessageController extends BaseController
         $messages = $msg->fetchAll($this->db);
         $table = $this->view->render_table('messages', $messages);
         $this->view->add(':main', $table);
-        $this->view->render();
     }
 
     public function newmessage() {
         if($this->auth->auth()) {
-            echo "Authenticated";
+            $msgform = str_replace(':author', $_SESSION['user']['user_id'], file_get_contents("../src/Views/forms/message.tpl") );
+            $this->view->add(':main', $msgform);
+            $this->view->render();
         } else {
             echo "Not Authenticated";
         }
+    }
+
+    public function create() {
+        $msg = new Message();
+        $msg->save($this->db);
     }
 
 }

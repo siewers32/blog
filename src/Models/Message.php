@@ -22,12 +22,13 @@ class Message {
     }
 
     public function save(object $con) {
-        $fields = implode(", ". $this->fillable);
+        $fields = implode(", ", $this->fillable);
         $placeholders = ":".implode(", :", $this->fillable);
         $sql = "insert into $this->table ($fields) values ($placeholders)";
         $stmt = $con->prepare($sql);
         foreach($this->fillable as $field) {
             $value = $_POST[$field];
+            echo $value." - ".$field;
             $stmt->bindParam(":".$field, $value);
         }
         return $stmt->execute();

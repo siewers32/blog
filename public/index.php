@@ -17,20 +17,20 @@ $pdo = new PDO("mysql:host=localhost;port=3307;dbname=blog", "root", "root");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-$c->add('db',$pdo);
+$c->set('db',$pdo);
 
 //layout
 $view = new View("../src/Views/layout/layout.tpl");
-$c->add('view', $view);
+$c->set('view', $view);
 
 //authentication
-$c->add('auth', new Auth());
+$c->set('auth', new Auth());
 
-$controllers = [
-    'HomeController',
-    'UserController',
-    'AuthController'
-];
+//$controllers = [
+//    'HomeController',
+//    'UserController',
+//    'AuthController'
+//];
 
 
 $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']).'Controller': 'HomeController';

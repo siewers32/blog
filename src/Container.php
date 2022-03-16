@@ -7,11 +7,11 @@ class Container {
         $this->objects = [];
     }
 
-    public function add(string $key, object $obj) {
+    public function set(string $key, object $obj) {
         $this->objects[$key] = $obj;
     }
 
-    public function getObject($key) {
+    public function get($key) {
         return $this->objects[$key];
     }
 }
